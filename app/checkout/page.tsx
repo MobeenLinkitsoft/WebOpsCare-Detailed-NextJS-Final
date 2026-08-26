@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react"; // 1. Import Suspense
 import Shell from "@/components/Shell";
 import PayPalSubscription from "@/components/PayPalSubscription";
-import { Suspense } from "react";
 
 const plans = {
   essential: {
@@ -42,7 +42,8 @@ const plans = {
   elevate: {
     name: "Elevate",
     price: 319,
-    description: "For ecommerce, high-traffic and mission-critical sites.",
+    description:
+      "For ecommerce, high-traffic and mission-critical sites.",
     planId: process.env.NEXT_PUBLIC_PAYPAL_PLAN_ENTERPRISE || "",
     features: [
       "Everything in Advanced",
@@ -59,7 +60,7 @@ const plans = {
 
 type PlanKey = keyof typeof plans;
 
-// 1. Move your main logic into a new component
+// 2. Rename your main function to something else (e.g., CheckoutContent)
 function CheckoutContent() {
   const searchParams = useSearchParams();
 
@@ -73,7 +74,7 @@ function CheckoutContent() {
   const plan = plans[planKey];
 
   return (
-    <>
+    <Shell>
       <section className="pageHero">
         <div className="container">
           <div className="eyebrow">Secure checkout</div>
@@ -81,8 +82,8 @@ function CheckoutContent() {
           <h1>Start your managed website plan.</h1>
 
           <p className="lead">
-            You're one step away from getting your website properly maintained,
-            monitored and supported.
+            You're one step away from getting your website properly
+            maintained, monitored and supported.
           </p>
         </div>
       </section>
@@ -100,7 +101,9 @@ function CheckoutContent() {
 
               <h2>{plan.name}</h2>
 
-              <p className="intro">{plan.description}</p>
+              <p className="intro">
+                {plan.description}
+              </p>
 
               <div className="selectedPlan card soft">
                 <div>
@@ -137,7 +140,8 @@ function CheckoutContent() {
 
               <p className="intro">
                 You'll securely approve your recurring{" "}
-                <strong>{plan.name}</strong> subscription through PayPal.
+                <strong>{plan.name}</strong> subscription through
+                PayPal.
               </p>
 
               {plan.planId ? (
@@ -147,11 +151,13 @@ function CheckoutContent() {
                 />
               ) : (
                 <div className="paymentWarning">
-                  <strong>PayPal plan ID is not configured.</strong>
+                  <strong>
+                    PayPal plan ID is not configured.
+                  </strong>
 
                   <p>
-                    Add the PayPal plan ID for the {plan.name} plan to your
-                    environment file.
+                    Add the PayPal plan ID for the{" "}
+                    {plan.name} plan to your environment file.
                   </p>
                 </div>
               )}
@@ -160,29 +166,27 @@ function CheckoutContent() {
                 <span>✓</span>
 
                 <p>
-                  Recurring subscription. You can manage or cancel your
-                  subscription through your PayPal account.
+                  Recurring subscription. You can manage or cancel
+                  your subscription through your PayPal account.
                 </p>
               </div>
             </section>
           </div>
         </div>
       </section>
-    </>
+    </Shell>
   );
 }
 
-// 2. Wrap that component in Suspense in your default export
+// 3. Export a new default component that wraps your logic in Suspense
 export default function CheckoutPage() {
   return (
-    <Shell>
-      {/* 
-        Suspense will show the fallback UI while Next.js 
-        waits to read the searchParams on the client 
-      */}
-      <Suspense fallback={<div>Loading checkout...</div>}>
-        <CheckoutContent />
-      </Suspense>
-    </Shell>
+    <Suspense fallback={
+      <div style={{ padding: '100px 20px', textAlign: 'center' }}>
+        Loading checkout details...
+      </div>
+    }>
+      <CheckoutContent />
+    </Suspense>
   );
 }
