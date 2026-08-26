@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react"; // 1. Import Suspense
 import Shell from "@/components/Shell";
 
-export default function CheckoutSuccess() {
+// 2. Rename your main function
+function CheckoutSuccessContent() {
   const searchParams = useSearchParams();
 
   const plan = searchParams.get("plan");
@@ -73,5 +75,18 @@ export default function CheckoutSuccess() {
         </div>
       </section>
     </Shell>
+  );
+}
+
+// 3. Export a new default component wrapped in Suspense
+export default function CheckoutSuccess() {
+  return (
+    <Suspense fallback={
+      <div style={{ padding: '100px 20px', textAlign: 'center' }}>
+        Loading confirmation details...
+      </div>
+    }>
+      <CheckoutSuccessContent />
+    </Suspense>
   );
 }
