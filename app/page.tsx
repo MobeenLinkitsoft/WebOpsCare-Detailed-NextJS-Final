@@ -283,7 +283,7 @@ export default function Home() {
                 Request My Free Audit →
               </Link>
 
-              <Link className="btn light" href="/contact">
+              <Link className="btn dark" href="/contact">
                 Talk to the Team
               </Link>
             </div>

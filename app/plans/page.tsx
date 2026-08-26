@@ -194,7 +194,7 @@ export default function Plans() {
                 Get a Free Website Audit →
               </Link>
 
-              <Link href="/contact" className="btn light">
+              <Link href="/contact" className="btn dark">
                 Talk to the Team
               </Link>
             </div>

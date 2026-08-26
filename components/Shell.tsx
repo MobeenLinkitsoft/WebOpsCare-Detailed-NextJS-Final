@@ -1,3 +1,113 @@
+
 import Link from "next/link";
-export default function Shell({children}:{children:React.ReactNode}){return <><div className="topbar"><div className="container topin"><span>Managed website operations for businesses worldwide</span><span>Security · Backups · Monitoring · Support</span></div></div><header className="nav"><div className="container navin"><Link href="/" className="logo"><span className="mark">W</span>WebOpsCare</Link><nav className="navlinks"><Link href="/about">About</Link><Link href="/services">Services</Link><Link href="/process">Process</Link><Link href="/plans">Plans</Link><Link href="/works">Our Work</Link><Link href="/guides">Guides</Link><Link href="/contact">Contact</Link></nav><div className="navactions"><Link className="btn light" href="/login">Client Login</Link><Link className="btn red" href="/audit">Free Audit</Link></div></div></header>{children}<Footer/></>}
-function Footer(){return <footer><div className="container foot"><div><Link href="/" className="logo"><span className="mark">W</span>WebOpsCare</Link><p>Managed website operations that keep business websites secure, maintained, monitored and ready for customers.</p></div><div><strong>Services</strong><Link href="/services/wordpress">WordPress</Link><Link href="/services/shopify">Shopify</Link><Link href="/services/ecommerce">Ecommerce</Link><Link href="/services/security">Security</Link><Link href="/services/management">Website Management</Link></div><div><strong>Company</strong><Link href="/about">About</Link><Link href="/works">Our Work</Link><Link href="/process">Process</Link><Link href="/plans">Plans</Link><Link href="/contact">Contact</Link></div><div><strong>Resources</strong><Link href="/guides">Guides</Link><Link href="/audit">Free Audit</Link><Link href="/checklist">Checklist</Link><Link href="/faq">FAQ</Link><Link href="/login">Client Portal</Link></div></div><div className="container copy">© 2026 WebOpsCare · Secure, maintainable digital infrastructure.</div></footer>}
+
+export default function Shell({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <>
+      <div className="topbar">
+        <div className="container topin">
+          <span>Managed website operations for businesses worldwide</span>
+          <span>Security · Backups · Monitoring · Support</span>
+        </div>
+      </div>
+
+      <header className="nav">
+        <div className="container navin">
+          <Link href="/" className="logo">
+            <span className="mark">W</span>WebOpsCare
+          </Link>
+
+          <nav className="navlinks">
+            <Link href="/about">About</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/process">Process</Link>
+            <Link href="/plans">Plans</Link>
+            <Link href="/works">Our Work</Link>
+            <Link href="/guides">Guides</Link>
+            <Link href="/contact">Contact</Link>
+          </nav>
+
+          <div className="navactions">
+            {/*
+            <Link className="btn light" href="/login">
+              Client Login
+            </Link>
+            */}
+
+            <Link className="btn red" href="/audit">
+              Free Audit
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      {children}
+
+      <Footer />
+    </>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div className="container foot">
+        <div>
+          <Link href="/" className="logo">
+            <span className="mark">W</span>WebOpsCare
+          </Link>
+
+          <p>
+            Managed website operations that keep business websites secure,
+            maintained, monitored and ready for customers.
+          </p>
+
+          <p className="footerAddress">
+            5900 Balcones Drive, Ste 100<br />
+            Austin, TX 78731
+          </p>
+        </div>
+
+        <div>
+          <strong>Services</strong>
+
+          <Link href="/services/domain">Domain & DNS</Link>
+          <Link href="/services/hosting">Website Hosting</Link>
+          <Link href="/services/wordpress">WordPress</Link>
+          <Link href="/services/shopify">Shopify</Link>
+          <Link href="/services/ecommerce">Ecommerce</Link>
+          <Link href="/services/security">Security</Link>
+          <Link href="/services/management">Website Management</Link>
+        </div>
+
+        <div>
+          <strong>Company</strong>
+
+          <Link href="/about">About</Link>
+          <Link href="/works">Our Work</Link>
+          <Link href="/process">Process</Link>
+          <Link href="/plans">Plans</Link>
+          <Link href="/contact">Contact</Link>
+        </div>
+
+        <div>
+          <strong>Resources</strong>
+
+          <Link href="/guides">Guides</Link>
+          <Link href="/audit">Free Audit</Link>
+          <Link href="/checklist">Checklist</Link>
+          <Link href="/faq">FAQ</Link>
+          <Link href="/login">Client Portal</Link>
+        </div>
+      </div>
+
+      <div className="container copy">
+        © 2026 WebOpsCare · Secure, maintainable digital infrastructure.
+      </div>
+    </footer>
+  );
+}
